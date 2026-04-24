@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Air One | Handheld AC Reimagined</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="side-nav">
+        <a href="#hero" class="active">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+            <span class="tooltip">Home</span>
+        </a>
+        <a href="#info">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+            <span class="tooltip">Tech Specs</span>
+        </a>
+        <a href="#about">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+            <span class="tooltip">Control</span>
+        </a>
+        <a href="#pricing">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+            <span class="tooltip">Pricing</span>
+        </a>
+    </div>
+
+    <nav>
+        <div class="logo">
+            <div class="logo-icon"></div>
+            AIR ONE
+        </div>
+        <a href="#pricing" class="btn btn-primary" style="padding: 10px 20px; font-size: 0.8rem;">Pre-order</a>
+    </nav>
+
+    <section class="hero" id="hero">
+        <div class="hero-tag">HANDHELD AC REIMAGINED</div>
+        <h1>Air One.</h1>
+        <p>A handheld fan that actually cools you down. Built with an ESP32, a 5V Peltier, and a year of coding.</p>
+        <div class="fan-container">
+            <div class="fan-base">
+                <div class="fan-blades" id="heroBlades">
+                    <div class="blade"></div>
+                    <div class="blade"></div>
+                    <div class="blade"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="info">
+        <div class="section-title">
+            <h2>What's Inside.</h2>
+            <p style="color: var(--text-dim); max-width: 600px;">We spent a year building this. The hardware is solid, the code is clean, and it actually works.</p>
+        </div>
+        <div class="tech-grid">
+            <div class="tech-card">
+                <span class="tech-tag">Brain</span>
+                <h3>ESP32-C3 SuperMini</h3>
+                <p>Tiny but powerful. Handles the fan speed, Peltier control, and keeps everything running smoothly.</p>
+            </div>
+            <div class="tech-card">
+                <span class="tech-tag">Cooling</span>
+                <h3>5V High Performance Peltier</h3>
+                <p>Thermoelectric cooling that actually works. Cools the air as it passes through, no gimmicks.</p>
+            </div>
+            <div class="tech-card">
+                <span class="tech-tag">Interface</span>
+                <div class="tft-display">
+                    <div style="display: flex; justify-content: space-between;"><span>TEMP</span><span>18°C</span></div>
+                    <div class="tft-line"></div>
+                    <div style="display: flex; justify-content: space-between;"><span>FAN</span><span>85%</span></div>
+                    <div class="tft-line"></div>
+                    <div style="display: flex; justify-content: space-between;"><span>BATT</span><span>92%</span></div>
+                </div>
+                <h3>0.96" TFT Display</h3>
+                <p>Shows you what's happening. Temperature, fan speed, battery level, all on a tiny screen.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="about">
+        <div class="section-title" style="text-align: center;">
+            <h2>How Long Will It Last.</h2>
+            <p style="color: var(--text-dim); max-width: 600px; margin: 0 auto;">Adjust the sliders to see how long the battery will last with your settings.</p>
+        </div>
+        <div class="control-ui">
+            <div class="battery-calc">
+                <div class="calc-row">
+                    <div class="calc-slider">
+                        <label class="calc-label">Fan Speed</label>
+                        <input type="range" id="fanSpeedSlider" min="0" max="100" value="50">
+                    </div>
+                    <div class="calc-value" id="fanSpeedValue">50%</div>
+                </div>
+                <div class="calc-row">
+                    <div class="calc-slider">
+                        <label class="calc-label">Peltier Cooling</label>
+                        <input type="range" id="peltierSlider" min="0" max="100" value="50">
+                    </div>
+                    <div class="calc-value" id="peltierValue">50%</div>
+                </div>
+                <div class="battery-result">
+                    <h4>Estimated Runtime</h4>
+                    <div class="battery-time" id="batteryTime">12h 30m</div>
+                    <div class="battery-subtitle">With current settings</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="pricing">
+        <div class="section-title" style="text-align: center;">
+            <h2>Get One.</h2>
+        </div>
+        <div class="pricing-grid">
+            <div class="price-card">
+                <h3>Developer Kit</h3>
+                <div style="font-size: 3rem; font-weight: 800; margin: 1.5rem 0;">$149</div>
+                <p style="color: var(--text-dim); margin-bottom: 2rem;">Barebones hardware for enthusiasts.</p>
+                <a href="#" class="btn btn-primary" style="width: 100%;">Select</a>
+            </div>
+            <div class="price-card featured">
+                <h3>Air One Pro</h3>
+                <div style="font-size: 3rem; font-weight: 800; margin: 1.5rem 0;">$249</div>
+                <p style="color: var(--text-dim); margin-bottom: 2rem;">Fully assembled with premium casing.</p>
+                <a href="#" class="btn btn-primary" style="width: 100%;">Select</a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        &copy; 2026 Air One. A high school project that actually works.
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
