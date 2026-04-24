@@ -5,37 +5,22 @@ const peltierValue = document.getElementById('peltierValue');
 const batteryTime = document.getElementById('batteryTime');
 const navLinks = document.querySelectorAll('.side-nav a');
 
-const batteryCapacity = 10000;
-const baseFanPower = 1.2;
-const basePeltierPower = 2.5;
-
 function calculateBatteryLife() {
     const fanSpeed = parseInt(fanSpeedSlider.value);
     const peltierIntensity = parseInt(peltierSlider.value);
 
-    const fanPower = (baseFanPower * fanSpeed) / 100;
-    const peltierPower = (basePeltierPower * peltierIntensity) / 100;
-    const totalPower = fanPower + peltierPower;
-
-    let hours = 0;
-    let minutes = 0;
-
-    if (totalPower > 0) {
-        const totalMinutes = (batteryCapacity / totalPower) * 60;
-        hours = Math.floor(totalMinutes / 60);
-        minutes = Math.round(totalMinutes % 60);
-
-        if (hours > 16) {
-            hours = 16;
-            minutes = 0;
-        }
-    } else {
-        hours = 16;
-        minutes = 0;
-    }
-
     fanSpeedValue.textContent = `${fanSpeed}%`;
     peltierValue.textContent = `${peltierIntensity}%`;
+
+    const minRuntime = 2;
+    const maxRuntime = 16;
+    const combinedIntensity = (fanSpeed + peltierIntensity) / 2;
+    const intensityFactor = combinedIntensity / 100;
+    
+    const totalHours = maxRuntime - (intensityFactor * (maxRuntime - minRuntime));
+    const hours = Math.floor(totalHours);
+    const minutes = Math.round((totalHours - hours) * 60);
+
     batteryTime.textContent = `${hours}h ${minutes}m`;
 }
 
